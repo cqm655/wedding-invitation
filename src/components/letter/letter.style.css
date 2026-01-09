@@ -1,0 +1,167 @@
+/* Container principal */
+.invitation-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    perspective: 600px;
+    font-family: 'Great Vibes', cursive;
+    background-color: #fff8f0;
+    border: 2px solid #d2b48c;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Top / Bottom */
+.letter-top-container,
+.letter-bottom-container {
+    position: absolute;
+    width: 100%;
+    background-color: #fdf5e6;
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: height 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.letter-top-container {
+    top: 0;
+    height: 50%;
+    transform-origin: top;
+}
+
+.expanded-top-container {
+    height: 10%;
+    transform: rotateX(-75deg);
+}
+
+.letter-bottom-container {
+    bottom: 0;
+    height: 50%;
+    transform-origin: bottom;
+}
+
+.expanded-bottom-container {
+    height: 10%;
+    transform: rotateX(75deg);
+}
+
+/* Middle content */
+.middle-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+    opacity 0.6s ease;
+}
+
+.expanded-middle-container {
+    transform: translate(-50%, -160px) rotateX(-40deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.invite-title {
+    font-size: 1.8rem;
+    color: #5c3d2e;
+    margin-bottom: 0.5rem;
+}
+
+.invite-date {
+    font-size: 1rem;
+    color: #8b5c42;
+    margin-bottom: 1rem;
+}
+
+.open-button {
+    color: #fff;
+    border: none;
+    width: 150px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+}
+
+.open-button:hover {
+    transform: scale(1.05);
+}
+
+/* --- Mobile --- */
+@media (max-width: 430px) {
+    .invitation-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 8px;
+    }
+
+    .invite-title {
+        font-size: 1.5rem;
+    }
+
+    .invite-date {
+        font-size: 0.9rem;
+    }
+
+
+    .wax-seal {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .letter-top-container,
+    .letter-bottom-container {
+        height: 50%;
+    }
+
+    .expanded-top-container,
+    .expanded-bottom-container {
+        height: 0;
+    }
+
+    .expanded-middle-container {
+        transform: translate(-50%, -110px) rotateX(-35deg);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .invitation-container {
+        perspective: none;
+    }
+
+    .letter-top-container,
+    .letter-bottom-container {
+        transform: none !important;
+        transition: height 1s ease-out;
+    }
+
+    .expanded-top-container {
+        height: 0;
+    }
+
+    .expanded-bottom-container {
+        height: 0;
+    }
+
+    .middle-container {
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .expanded-middle-container {
+        transform: translate(-50%, -120px);
+        opacity: 0;
+    }
+}
+
+
+
