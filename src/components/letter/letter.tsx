@@ -3,6 +3,8 @@ import './letter.style.css';
 import paper from '../../assets/audio/cut-paper.mp3'
 import wedding from '../../assets/audio/wedding.mp3'
 import stampila from '../../assets/imges/stampila.png'
+import Card from "../card/card.tsx";
+import Video from "../video/video.tsx";
 
 const Letter = () => {
     const [isExpanded, setExpanded] = useState(false);
@@ -66,17 +68,42 @@ const Letter = () => {
     return (
         <div className="invitation-container">
             {/* Top */}
-            <div className={`letter-top-container ${isExpanded ? 'expanded-top-container' : ''}`}></div>
 
+            <div className={`letter-top-container ${isExpanded ? 'expanded-top-container' : ''}`}></div>
             {/* Middle content */}
             <div className={`middle-container ${isExpanded ? 'expanded-middle-container' : ''}`}>
                 <h1 className="invite-title">Vă invităm la nunta noastră</h1>
-                <p className="invite-date">08 Ianuarie 2026</p>
+                <p className="invite-date">25 Mai 2026</p>
                 <img onClick={toggleExpanded} src={stampila} className="open-button" alt={"logo"}/>
             </div>
 
             {/* Bottom */}
             <div className={`letter-bottom-container ${isExpanded ? 'expanded-bottom-container' : ''}`}></div>
+            {isExpanded && (
+                <div>
+                    <Card><Video/></Card>
+                    <Card style={{color: "black", textAlign: "center", padding: "0"}}>
+                        <div className="text-content">
+                            <h1>Iurie și Cristina</h1>
+                        </div>
+                    </Card>
+
+                    <Card>
+                        <div className="text-content">
+                            <h4>
+                                Împreună este locul nostru preferat. <br/>
+                            </h4>
+                            <h5>De aceea, <br/></h5>
+                            <h5>cu bucurie și recunoștință, <br/></h5>
+                            <h5>vă invităm să ne fiți martori <br/></h5>
+                            <h5>la începutul unei noi povești. <br/></h5>
+
+                        </div>
+
+                    </Card>
+                </div>
+            )}
+
 
         </div>
     );
