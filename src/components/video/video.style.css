@@ -1,6 +1,6 @@
 .card-video {
     width: 100%;
-    height: fit-content;
+    height: auto;
     border-radius: 10% 30% 50% 70%;
     text-align: center;
     color: black;

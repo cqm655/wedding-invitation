@@ -1,7 +1,10 @@
-import video from "../../assets/video/video.mp4";
 import "./video.style.css";
 
-const Video = () => {
+type Props = {
+    video: string;
+}
+
+const Video = (props: Props) => {
     return <>
         <video
             autoPlay
@@ -10,7 +13,7 @@ const Video = () => {
             playsInline
             className="card-video"
         >
-            <source src={video} type="video/mp4"/>
+            <source src={props.video} type="video/mp4"/>
             You`re browser does not support the video element.
         </video>
     </>
