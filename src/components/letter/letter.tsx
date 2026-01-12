@@ -8,12 +8,15 @@ import Video from "../video/video.tsx";
 import video from "../../assets/video/video.mp4";
 import road from "../../assets/video/road.mp4"
 import Map from "../map/map.tsx"
+import ParallaxCard from "../card/paralax.tsx";
+import time from "../../assets/video/time.mp4";
+import cheers from "../../assets/video/cheers.mp4"
 
 const Letter = () => {
     const [isExpanded, setExpanded] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const audioRef2 = useRef<HTMLAudioElement | null>(null);
-    const containerRef = useRef<HTMLDivElement | null>(null); // ✅ ADĂUGAT
+    const containerRef = useRef<HTMLDivElement | null>(null); //
 
     useEffect(() => {
         audioRef.current = new Audio(paper);
@@ -90,8 +93,6 @@ const Letter = () => {
             <div className={`letter-top-container ${isExpanded ? 'expanded-top-container' : ''}`}></div>
             {/* Middle content */}
             <div className={`middle-container ${isExpanded ? 'expanded-middle-container' : ''}`}>
-                <h1 className="invite-title">Vă invităm la nunta noastră</h1>
-                <p className="invite-date">25 Mai 2026</p>
                 <img onClick={playSoundsAndToggle}
                      onTouchStart={playSoundsAndToggle} src={stampila} className="open-button" alt={"logo"}/>
             </div>
@@ -100,28 +101,45 @@ const Letter = () => {
             <div className={`letter-bottom-container ${isExpanded ? 'expanded-bottom-container' : ''}`}></div>
             {isExpanded && (
                 <div>
-                    <Card><Video video={video}/></Card>
-                    <Card style={{color: "black", textAlign: "center"}}>
+                    <ParallaxCard><Card><Video video={video}/></Card></ParallaxCard>
+                    <ParallaxCard><Card style={{color: "black", textAlign: "center"}}>
                         <div className="text-content">
-                            <h1>Cristina și Iura</h1>
+                            <span className="wedding-names">Cristina și Iura</span>
                         </div>
-                    </Card>
+                    </Card></ParallaxCard>
 
-                    <Card>
+                    <ParallaxCard><Card>
                         <div className="text-content">
-                            <h4>
+                            <h1>
                                 Împreună este locul nostru preferat. <br/>
-                            </h4>
-                            <h5>De aceea, <br/></h5>
-                            <h5>cu bucurie și recunoștință, <br/></h5>
-                            <h5>vă invităm să ne fiți martori <br/></h5>
-                            <h5>la începutul unei noi povești. <br/></h5>
+                            </h1>
+                            <h2>De aceea, <br/></h2>
+                            <h2>cu bucurie și recunoștință, <br/></h2>
+                            <h2>vă invităm să ne fiți martori <br/></h2>
+                            <h2>la începutul unei noi povești. <br/></h2>
 
                         </div>
 
-                    </Card>
-                    <Card><Video video={road}/></Card>
-                    <Card><Map/></Card>
+                    </Card></ParallaxCard>
+                    <ParallaxCard><Card>
+                        <Video video={time}/>
+                    </Card></ParallaxCard>
+                    <ParallaxCard><Card>
+                        <div className="text-content">
+                            <h2>Avem onoarea să vă invităm pe data de</h2> <h1>25 mai 2026</h1>
+                        </div>
+                    </Card></ParallaxCard>
+                    <ParallaxCard><Card><Video video={road}/></Card></ParallaxCard>
+                    <ParallaxCard><Card><Map/></Card></ParallaxCard>
+                    <ParallaxCard><Card>
+                        <div className="text-content">
+                            <h1>Vă așteptăm cu mare drag!</h1>
+                        </div>
+                    </Card></ParallaxCard>
+                    <ParallaxCard><Card>
+                        <Video video={cheers}/>
+                    </Card></ParallaxCard>
+
                 </div>
             )}
 

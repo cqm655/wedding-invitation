@@ -1,40 +1,52 @@
 /* Container principal */
 .invitation-container {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     overflow-y: auto; /* în loc de scroll */
     -webkit-overflow-scrolling: touch;
     position: relative;
-    perspective: 600px;
+    perspective: 1200px;
     font-family: 'Great Vibes', cursive;
-    background-color: #fff8f0;
+    background-color: #b4b2b2;
     border: 2px solid #d2b48c;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
 }
+
+.letter-top-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #eae7e7;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 50% 100%, 0% 48%);
+    /* combina umbra exterioara si inset pentru volum */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9), /* umbra dreapta jos */ inset 0 5px 15px rgba(0, 0, 0, 0.1); /* adancime interior */
+    transform-origin: center;
+    transition: height 2s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
 
 /* Top / Bottom */
 .letter-top-container,
 .letter-bottom-container {
     position: absolute;
     width: 100%;
-    background-color: #fdf5e6;
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
-    transition: height 1.2s cubic-bezier(0.77, 0, 0.175, 1),
-    transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    background-color: #eae7e7;
+    /*box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);*/
+    transition: height 2s cubic-bezier(0.77, 0, 0.175, 1),
+    transform 2s cubic-bezier(0.77, 0, 0.175, 1);
     z-index: 1;
     pointer-events: none;
 }
 
-.letter-top-container {
-    top: 0;
-    height: 50%;
-    transform-origin: top;
-}
 
 .expanded-top-container {
     height: 0;
-    transform: rotateX(-75deg);
+    transform: rotateX(-110deg);
 }
 
 .letter-bottom-container {
@@ -51,48 +63,51 @@
 /* Middle content */
 .middle-container {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
     text-align: center;
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+    transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1),
     opacity 0.6s ease;
 }
 
 .expanded-middle-container {
-    transform: translate(-50%, -160px) rotateX(-40deg);
+    transform: translate(50%, 160px) rotateX(-40deg);
     opacity: 0;
     pointer-events: none;
+    /*animation: sealMoveAndFade 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;*/
 }
 
 
 .invite-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     color: #5c3d2e;
     margin-bottom: 0.5rem;
 }
 
 .invite-date {
-    font-size: 1rem;
-    color: #8b5c42;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: #5c3d2e;
     margin-bottom: 1rem;
 }
 
 .open-button {
-    color: #fff;
-    border: none;
-    width: 150px;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 50px;
+    position: relative;
+    margin-top: -40px;
+    z-index: 20;
+    width: 240px;
+    height: 100%;
     cursor: pointer;
-    transition: transform 0.2s ease;
-
+    transition: transform 0.4s ease;
 }
 
 .open-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(-2deg);
+}
+
+.wedding-names {
+    font-size: clamp(3.5rem, 5vw, 3rem);
 }
 
 /* --- Mobile --- */
@@ -104,19 +119,20 @@
     }
 
     .invite-title {
-        font-size: 1.5rem;
+        font-size: clamp(1.8rem, 5vw, 3rem);
     }
 
     .invite-date {
-        font-size: 0.9rem;
+        font-size: clamp(1.8rem, 5vw, 3rem);
     }
 
 
     .wax-seal {
-        width: 50px;
+        width: 70px;
         height: 50px;
         bottom: 15px;
         right: 15px;
+
     }
 
     .letter-top-container,
@@ -126,11 +142,12 @@
 
     .expanded-top-container,
     .expanded-bottom-container {
-        height: 0;
+        height: 40%;
     }
 
     .expanded-middle-container {
         transform: translate(-50%, -110px) rotateX(-35deg);
+
     }
 }
 
@@ -143,19 +160,23 @@
     .letter-top-container,
     .letter-bottom-container {
         transform: none !important;
-        transition: height 1s ease-out;
+        transition: height 2s ease-out;
     }
 
+
     .expanded-top-container {
-        height: 0;
+        height: 40%;
+        animation: sealMoveAndFade 2s forwards;
     }
 
     .expanded-bottom-container {
-        height: 0;
+        height: 40%;
+        animation: sealMoveAndFade 2s forwards;
     }
 
     .middle-container {
-        transition: transform 1s ease, opacity 1s ease;
+        transition: transform 2s ease, opacity 1s ease;
+
     }
 
     .expanded-middle-container {
@@ -164,22 +185,29 @@
     }
 }
 
-/* Define the animation steps */
-@keyframes fadeIn {
-    100% {
-        opacity: 1; /* Start completely transparent */
-    }
-    75% {
-        opacity: 0.75; /* End fully visible */
-    }
-    50% {
-        opacity: 0.5;
-    }
-    25% {
-        opacity: 0.25;
+@keyframes sealMoveAndFade {
+    0% {
+        transform: translateX(-50%) translateY(0) translateZ(0) scale(1);
+        opacity: 1;
     }
 
+    20% {
+        transform: translateX(-50%) translateY(-40px) translateZ(0) scale(0.95);
+        opacity: 0.75;
+    }
+
+    35% {
+        transform: translateX(-50%) translateY(-60px) translateZ(0) scale(0.9);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-80px) translateZ(0) scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+    }
 }
+
 
 .text-content {
     text-align: center;
